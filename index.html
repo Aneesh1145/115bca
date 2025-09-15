@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio • Aneesh D</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#000000; --card:#111827; --muted:#94a3b8; --text:#e5e7eb; --accent1:#ff7b00; --accent2:#ffb347;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;
+      background:linear-gradient(135deg,#000000,#1a1a1a,#ff7b00,#ffb347);
+      background-size:400% 400%;
+      animation:premiumBG 18s ease infinite;
+      color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      position:relative;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    @keyframes premiumBG {
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    @keyframes fadeUp {
+      0% {opacity:0; transform:translateY(20px);}
+      100% {opacity:1; transform:translateY(0);}
+    }
+
+    body::before{
+      content:"";
+      position:absolute;
+      top:0;
+      right:0;
+      width:400px;
+      height:400px;
+      background:url('file_00000000d59061fdb4018d795da5527d.png') no-repeat top right;
+      background-size:contain;
+      opacity:0.6;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(180%) blur(10px);background:rgba(0,0,0,.7);border-bottom:1px solid rgba(255,255,255,.12)}
+    .navwrap{max-width:var(--max);margin:0 auto;display:flex;align-items:center;gap:16px;justify-content:space-between;padding:14px 20px}
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
+    .logo .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(45deg,var(--accent1),var(--accent2))}
+    .navbar{display:flex;gap:18px;align-items:center}
+    .navbar a{opacity:.85}
+    .navbar a:hover{opacity:1}
+    #menu-icon{display:none;font-size:28px;cursor:pointer}
+
+    .gradient-btn{padding:10px 16px;border:none;border-radius:999px;background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;font-weight:600;cursor:pointer;transition:transform .15s ease;opacity:0;animation:fadeUp 0.8s ease forwards;}
+    .gradient-btn:hover{transform:translateY(-1px)}
+
+    @media (max-width: 780px){
+      #menu-icon{display:block}
+      .navbar{position:absolute;inset:64px 16px auto 16px;background:rgba(0,0,0,.96);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:14px;flex-direction:column;gap:12px;display:none}
+      .navbar.open{display:flex}
+      .cta{display:none}
+    }
+
+    section{max-width:var(--max);margin:0 auto;padding:80px 20px;position:relative;z-index:1}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:28px;padding-top:48px}
+    .hero h1{margin:0 0 14px;}
+    .hero .intro{font-size:clamp(18px,2.5vw,22px);color:var(--muted);margin-bottom:6px;opacity:0;animation:fadeUp 0.8s ease forwards;animation-delay:0.2s;}
+    .hero .headline{font-size:clamp(36px,5vw,60px);font-weight:700;line-height:1.1;opacity:0;animation:fadeUp 0.8s ease forwards;animation-delay:0.6s;}
+    .hero .tagline{font-size:clamp(18px,2.5vw,22px);color:var(--muted);margin-top:8px;opacity:0;animation:fadeUp 0.8s ease forwards;animation-delay:1s;}
+    .hero .buttons a:first-child{animation-delay:1.4s;}
+    .hero .buttons a:last-child{animation-delay:1.6s;}
+    .subtitle{color:var(--muted);font-size:clamp(15px,2vw,18px)}
+    .chip{display:inline-flex;gap:8px;align-items:center;border:1px solid rgba(255,255,255,.2);padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.02);margin:16px 0}
+
+    .hero-card{background:linear-gradient(180deg,rgba(255,123,0,.12),rgba(255,179,71,.12));border:1px solid rgba(255,123,0,.35);padding:18px;border-radius:18px}
+    .hero-card ul{margin:0;padding:0 0 0 18px;color:#cbd5e1}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{grid-column:span 6;background:var(--card);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px;transition:transform .15s}
+    .card:hover{transform:translateY(-2px)}
+    .card h3{margin:0 0 6px}
+    .tag{display:inline-flex;align-items:center;gap:6px;margin-right:8px;margin-top:6px;font-size:12px;border:1px solid rgba(255,255,255,.25);padding:4px 8px;border-radius:999px;color:#cbd5e1}
+    .tag img{width:18px;height:18px}
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+      .card{grid-column:span 12}
+    }
+
+    .contact{display:grid;gap:16px}
+    .input{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:#0b0f19;color:var(--text)}
+    textarea.input{min-height:120px}
+    .note{color:var(--muted);font-size:14px}
+
+    footer{max-width:var(--max);margin:0 auto;padding:30px 20px;color:var(--muted);display:flex;justify-content:space-between;align-items:center;gap:16px;position:relative;z-index:1}
+    .socials{display:flex;gap:12px}
+    .socials a{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;border:1px solid rgba(255,255,255,.2)}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="navwrap">
+      <a href="#home" class="logo"><span class="dot"></span><span>Aneesh&nbsp;D</span></a>
+      <i class='bx bx-menu' id="menu-icon"></i>
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#languages">Languages</a>
+        <a href="#tools">Tools</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a class="gradient-btn cta" href="#contact">Contact Me</a>
+    </div>
+  </header>
+
+  <section id="home" class="hero">
+    <div>
+      <p class="chip"><i class='bx bxs-bolt'></i> Video Editor • BCA Final Year</p>
+      <h1>
+        <div class="intro">I am Aneesh D 👋</div>
+        <div class="headline">Creative Video Editor 🎬</div>
+        <div class="tagline">Turning moments into stories ✨</div>
+      </h1>
+      <p class="subtitle">CapCut • Adobe Premiere Pro • Alight Motion.</p>
+      <div class="buttons" style="display:flex;gap:12px;margin-top:18px">
+        <a class="gradient-btn" href="#about">See More</a>
+        <a class="gradient-btn" style="background:transparent;border:1px solid rgba(255,255,255,.3);color:#e5e7eb" href="#about">About Me</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Highlights</h3>
+      <ul>
+        <li>Turnaround within 24–48h for shorts</li>
+        <li>Basic color, sound cleanup, typography</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="title">About</h2>
+    <p class="subtitle">I'm a BCA final-year student and video editor. I’m passionate about transforming raw clips into compelling stories that engage audiences and leave a lasting impression.</p>
+    <p class="subtitle">With a creative eye and technical expertise, I enjoy working with different editing tools to produce high-quality content for events, creators, and social media platforms.</p>
+  </section>
+
+  <section id="languages">
+    <h2 class="title">Languages</h2>
+    <div>
+      <span class="tag">ಕನ್ನಡ</span>
+      <span class="tag">English</span>
+      <span class="tag">हिन्दी</span>
+      <span class="tag">తెలుగు</span>
+    </div>
+  </section>
+
+  <section id="tools">
+    <h2 class="title">Tools</h2>
+    <div>
+      <span class="tag"><img src="logos/capcut.png" alt="CapCut"> CapCut</span>
+      <span class="tag"><img src="logos/premiere.png" alt="Adobe Premiere Pro"> Adobe Premiere Pro</span>
+      <span class="tag"><img src="logos/lightroom.png" alt="Lightroom"> Lightroom</span>
+      <span class="tag"><img src="logos/alightmotion.png" alt="Alight Motion"> Alight Motion</span>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="title">Projects</h2>
+    <div class="grid">
+      <article class="card" style="grid-column: span 12; text-align:center;">
+        <h3>My Video Project</h3>
+        <video controls style="width:100%; border-radius:12px;">
+          <source src="lv_0_20241207185609.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="title">Contact</h2>
+    <form class="contact" action="https://formspree.io/f/mayvlpgr" method="POST">
+      <input class="input" type="text" name="name" placeholder="Your name" required />
+      <input class="input" type="email" name="email" placeholder="Email address" required />
+      <textarea class="input" name="message" placeholder="Tell me about your project…" required></textarea>
+      <button class="gradient-btn" type="submit">Send</button>
+    </form>
+    <div class="grid" style="margin-top:16px">
+      <div class="card" style="grid-column:span 12;">
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <a href="tel:+918123661145" class="tag"><i class='bx bx-phone'></i> 8123661145</a>
+          <a href="https://wa.me/918123661145" target="_blank" class="tag"><i class='bx bxl-whatsapp'></i> WhatsApp</a>
+          <a href="mailto:23bca115@caias.in" class="tag"><i class='bx bxl-gmail'></i> 23bca115@caias.in</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <small>© <span id="year"></span> Aneesh D</small>
+    <div class="socials">
+      <a href="https://www.instagram.com/" target="_blank"><i class='bx bxl-instagram'></i></a>
+      <a href="https://www.youtube.com/" target="_blank"><i class='bx bxl-youtube'></i></a>
+      <a href="https://github.com/" target="_blank"><i class='bx bxl-github'></i></a>
+      <a href="https://wa.me/918123661145" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuIcon = document.getElementById('menu-icon');
+    const navbar = document.querySelector('.navbar');
+    function toggleMenu(){
+      navbar.classList.toggle('open');
+      menuIcon.className = navbar.classList.contains('open') ? 'bx bx-x' : 'bx bx-menu';
+    }
+    menuIcon.addEventListener('click', toggleMenu);
+  </script>
+</body>
+</html>
